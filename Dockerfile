@@ -34,7 +34,7 @@
 #
 # =================================================================
 
-FROM ghcr.io/osgeo/gdal:ubuntu-full-3.9.1
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.9.1
 LABEL maintainer="Just van den Broecke <justb4@gmail.com>"
 
 # Docker file for full geoapi server with libs/packages for all providers.
