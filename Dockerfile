@@ -59,6 +59,7 @@ LABEL maintainer="Just van den Broecke <justb4@gmail.com>"
 ARG TZ="Etc/UTC"
 ARG LANG="en_US.UTF-8"
 ARG ADD_DEB_PACKAGES1="\
+    gzip \
     locales \
     glibc-locale-source \
     glibc-langpack-en \
