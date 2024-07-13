@@ -61,8 +61,6 @@ ARG LANG="en_US.UTF-8"
 ARG ADD_DEB_PACKAGES="\
     libsqlite3-mod-spatialite \
     python3-dask \
-    python3-elasticsearch \
-    python3-fiona \
     python3-gdal \
     python3-jsonpatch \
     python3-netcdf4 \
@@ -109,8 +107,7 @@ RUN \
     && apt-get install -y ${DEB_BUILD_DEPS}
 
 RUN \
-    add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
-    && apt-get --no-install-recommends install -y ${DEB_PACKAGES}
+    apt-get --no-install-recommends install -y ${DEB_PACKAGES}
 
 RUN \
     localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
