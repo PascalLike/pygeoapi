@@ -34,8 +34,7 @@
 #
 # =================================================================
 
-FROM ubuntu:jammy-20240627.1
-
+FROM ghcr.io/osgeo/gdal:ubuntu-full-3.9.1
 LABEL maintainer="Just van den Broecke <justb4@gmail.com>"
 
 # Docker file for full geoapi server with libs/packages for all providers.
@@ -88,7 +87,6 @@ ENV TZ=${TZ} \
     DEB_BUILD_DEPS="\
     software-properties-common \
     curl \
-    wget \
     unzip" \
     DEB_PACKAGES="\
     locales \
@@ -127,11 +125,6 @@ RUN \
     && apt autoremove -y  \
     && rm -rf /var/lib/apt/lists/*
 
-RUN \
-    wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" -O ~/miniconda.sh \
-    && bash ~/miniconda.sh -b -p $HOME/miniconda \
-    && $HOME/miniconda/bin/conda init bash \
-    && $HOME/miniconda/bin/conda install -c conda-forge -y libgdal-arrow-parquet
 
 ADD requirements-docker.txt requirements-admin.txt /pygeoapi/
 # Install remaining pygeoapi deps
