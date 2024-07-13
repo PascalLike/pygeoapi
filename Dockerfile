@@ -106,10 +106,14 @@ WORKDIR /pygeoapi
 # Install operating system dependencies
 RUN \
     apt-get update -y \
-    && apt-get install -y ${DEB_BUILD_DEPS} \
-    && add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
-    && apt-get --no-install-recommends install -y ${DEB_PACKAGES} \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+    && apt-get install -y ${DEB_BUILD_DEPS}
+
+RUN \
+    add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
+    && apt-get --no-install-recommends install -y ${DEB_PACKAGES}
+
+RUN \
+    localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
     && echo "For ${TZ} date=$(date)" && echo "Locale=$(locale)"
 
 RUN \
