@@ -59,6 +59,8 @@ LABEL maintainer="Just van den Broecke <justb4@gmail.com>"
 ARG TZ="Etc/UTC"
 ARG LANG="en_US.UTF-8"
 ARG ADD_DEB_PACKAGES1="\
+    glibc-locale-source \
+    glibc-langpack-en \
     libsqlite3-mod-spatialite \
     python3-dask \
     python3-elasticsearch \
