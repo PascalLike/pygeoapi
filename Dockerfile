@@ -110,17 +110,16 @@ RUN \
     && add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
     && apt-get --no-install-recommends install -y ${DEB_PACKAGES} \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-    && echo "For ${TZ} date=$(date)" && echo "Locale=$(locale)"  \
-    # OGC schemas local setup
-    && mkdir /schemas.opengis.net \
+    && echo "For ${TZ} date=$(date)" && echo "Locale=$(locale)"
+
+RUN \
+    mkdir /schemas.opengis.net \
     && curl -O http://schemas.opengis.net/SCHEMAS_OPENGIS_NET.zip \
     && unzip ./SCHEMAS_OPENGIS_NET.zip "ogcapi/*" -d /schemas.opengis.net \
-    && rm -f ./SCHEMAS_OPENGIS_NET.zip \
-    # Cleanup TODO: remove unused Locales and TZs
-    # NOTE: this tries to remove gcc, but the actual package gcc-11 can't be
-    #       removed because python3-scipy depends on python3-pythran which
-    #       depends on g++
-    && apt-get remove --purge -y gcc ${DEB_BUILD_DEPS} \
+    && rm -f ./SCHEMAS_OPENGIS_NET.zip
+
+RUN \
+    apt-get remove --purge -y gcc ${DEB_BUILD_DEPS} \
     && apt-get clean \
     && apt autoremove -y  \
     && rm -rf /var/lib/apt/lists/*
