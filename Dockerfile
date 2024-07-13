@@ -58,16 +58,20 @@ LABEL maintainer="Just van den Broecke <justb4@gmail.com>"
 # ARGS
 ARG TZ="Etc/UTC"
 ARG LANG="en_US.UTF-8"
-ARG ADD_DEB_PACKAGES="\
+ARG ADD_DEB_PACKAGES1="\
     libsqlite3-mod-spatialite \
     python3-dask \
     python3-elasticsearch \
-    python3-fiona \
+    python3-fiona"
+    
+ARG ADD_DEB_PACKAGES2="\
     python3-gdal \
     python3-jsonpatch \
     python3-netcdf4 \
     python3-pandas \
-    python3-psycopg2 \
+    python3-psycopg2"
+    
+ARG ADD_DEB_PACKAGES3="\
     python3-pymongo \
     python3-pyproj \
     python3-rasterio \
@@ -111,7 +115,11 @@ RUN \
 
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 
-RUN apt-get --no-install-recommends install -y ${DEB_PACKAGES}
+RUN apt-get --no-install-recommends install -y ${DEB_PACKAGES1}
+
+RUN apt-get --no-install-recommends install -y ${DEB_PACKAGES2}
+
+RUN apt-get --no-install-recommends install -y ${DEB_PACKAGES3}
 
 RUN \
     localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
