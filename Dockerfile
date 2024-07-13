@@ -131,7 +131,7 @@ RUN \
     wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" -O ~/miniconda.sh \
     && bash ~/miniconda.sh -b -p $HOME/miniconda \
     && $HOME/miniconda/bin/conda init bash \
-    && $HOME/miniconda/bin/conda install -c conda-forge libgdal-arrow-parquet
+    && $HOME/miniconda/bin/conda install -c conda-forge -y libgdal-arrow-parquet
 
 ADD requirements-docker.txt requirements-admin.txt /pygeoapi/
 # Install remaining pygeoapi deps
